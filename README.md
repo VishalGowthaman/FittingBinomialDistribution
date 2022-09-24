@@ -1,4 +1,4 @@
-# Fitting Binomial Distribution
+# EX 01 Fitting Binomial Distribution
 
 # Aim : 
 
