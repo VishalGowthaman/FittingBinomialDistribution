@@ -26,8 +26,44 @@ The following are criteria for a frequency distribution to be a binomial distrib
 ![image](https://user-images.githubusercontent.com/104613195/166250867-46571ef5-f77b-4658-86ce-1c60c52fdfb1.png)
 
 # Program
+~~~
+DEVELOPED BY : Vishal Gowthaman K R
+REGISTER NUMBER : 212221230123
+~~~
+~~~
+import numpy as np
+import math
+import scipy.stats
 
-
+X=[0,1,2,3,4,5,6]
+f=[13,25,52,68,32,16,4]
+n=6
+N=np.sum(f)
+mean=np.inner(X,f)/N
+p=mean/n
+q=1-p
+Pr=list(); E=list(); xi=list()
+print("  X P(X=x) Obs.Fr  Ex.Fre   xi ")
+print("----------------------------------")
+for x in range(7):
+    c=math.factorial(n)/(math.factorial(x)*math.factorial(n-x))
+    Pr.append(c*p**x*q**(n-x))
+    E.append(Pr[x]*N)
+    xi.append((f[x]-E[x])**2/E[x])
+    print("%2.2f %2.2f  %4.2f   %3.2f  %3.2f"%(x,Pr[x],f[x],E[x],xi[x]))
+print("----------------------------------")
+cal_chi2=np.sum(xi)
+print("Calculated value of Chi square is %4.2f"%cal_chi2)
+tab_chi2=scipy.stats.chi2.ppf(1-.01, df=n)
+print("Table value of Chi square at 1  level is %4.2f"%tab_chi2)
+if cal_chi2<tab_chi2:
+    print("The given data can be fitted in binomial distribution at 1% LOS")
+else:
+    print("The given data cannot be fitted in binomial distribution at 1% LOS")
+~~~
+# Output:
+![123](https://user-images.githubusercontent.com/93427182/192081024-45186c17-a1e1-4487-8c6e-77e7a36d50f9.png)
 
 
 # Results and Output : 
+Thus, fitting poisson distribution for the given frequencey distribution is verified.
